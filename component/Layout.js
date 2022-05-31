@@ -13,20 +13,6 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Sidebar from './SideBar';
 import Navbar from './Navbar';
 import Home from '../pages';
-import Head from 'next/head';
-import Image from 'next/image';
-import Layout from '../component/Layout';
-import styles from '../styles/Home.module.css';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import { useState } from 'react';
-import { Table } from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 
 const drawerWidth = 240;
 
@@ -95,7 +81,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function Layouts() {
+export default function Layout({children}) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -106,12 +92,7 @@ export default function Layouts() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const [name, setName] = useState('');
 
-  const [Item, setItem] = useState([]);
-  const addItemHandlar = () => {
-    setItem([...Item, { name: name, id: Math.random() }]);
-  };
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -145,41 +126,7 @@ export default function Layouts() {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <Typography paragraph>
-          
-        <TextField
-          id="outlined-basic"
-          label="Outlined"
-          variant="outlined"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <Button sx={{ m: 1 }} variant="contained" onClick={addItemHandlar}>
-          Submit
-        </Button>
-        {Item.length > 0 && (
-          <TableContainer>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell></TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {Item.map((row) => (
-                  <TableRow
-                    key={row.id}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        )}
+          {children}
         </Typography>
         
       </Box>
