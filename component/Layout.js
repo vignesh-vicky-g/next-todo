@@ -13,6 +13,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Sidebar from './SideBar';
 import Navbar from './Navbar';
 import Home from '../pages';
+import { Container } from '@mui/system';
 
 const drawerWidth = 240;
 
@@ -125,10 +126,7 @@ export default function Layout({children}) {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography paragraph>
-          {children}
-        </Typography>
-        
+       <Container>{children}</Container>
       </Box>
     </Box>
   );
