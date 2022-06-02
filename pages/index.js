@@ -23,10 +23,11 @@ export default function Home() {
 
   const addItemHandlar = () => {
     setItem([...Item, { name: name, id: Math.random() }]);
+    setName('')
   };
   // console.log(Item);
   return (
-    <store.Provider value={store}>
+    <store.Provider value={[Item, setItem]}>
       <div className={styles.container}>
         <Head>
           <title>Create Next App</title>
@@ -44,7 +45,7 @@ export default function Home() {
           <Button sx={{ m: 1 }} variant="contained" onClick={addItemHandlar}>
             Submit
           </Button>
-          <Tables value={Item}/>
+          <Tables />
         </Layout>
       </div>
     </store.Provider>
